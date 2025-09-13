@@ -53,17 +53,18 @@ body {
 }
 
 .music .icon {
-    margin-top: 64px;
+    margin-top: clamp(0.5rem, -7.283rem + 20.755vh, 6rem);
 }
 
 .music p {
-    font-size: 36px;
+    font-size: clamp(2.25rem, 1.994rem + 1.207vw, 3.125rem);
     font-weight: bold;
 }
 
 .music-left, .music-right {
-    width: clamp(5rem, 2.435rem + 12.069vw, 13.75rem);
+    width: clamp(4.5rem, 3.218rem + 6.034vw, 8.875rem);
     position: absolute;
+    z-index: 1;
 }
 
 .music-left {
@@ -77,25 +78,25 @@ body {
 }
 
 .music-names {
-    width: 240px;
+    width: clamp(15rem, 13.168rem + 8.621vw, 21.25rem);
 }
 
 .box--buttons {
-    margin-bottom: 64px;
+    margin-bottom: clamp(0.5rem, -7.283rem + 20.755vh, 6rem);
     display: flex;
 }
 
 .box--buttons button {
-    margin: 0 8px;
-    font-size: 16px;
+    margin: 0 clamp(0.5rem, 0.353rem + 0.69vw, 1rem);
+    font-size: clamp(1rem, 0.89rem + 0.517vw, 1.375rem);
     display: flex;
     align-items: center;
-    padding: 8px 10px;
+    padding: clamp(0.5rem, 0.463rem + 0.172vw, 0.625rem) clamp(0.625rem, 0.552rem + 0.345vw, 0.875rem);
 }
 
 .box--buttons button img {
-    width: 16px;
-    margin-right: 6px;
+    width: clamp(1rem, 0.89rem + 0.517vw, 1.375rem);
+    margin-right: clamp(0.375rem, 0.338rem + 0.172vw, 0.5rem);
 }
 
 /* Esquinas superiores de hojas */
@@ -381,6 +382,62 @@ button:hover {
     background-color: #664B3A;
 }
 
+/* Modal del papa */
+
+.map {
+    background-color: #EBEBE9;
+    width: 100vw;
+    height: 100dvh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: clamp(1.625rem, 1.552rem + 0.345vw, 1.875rem);
+    margin: clamp(1rem, 0.927rem + 0.345vw, 1.25rem) clamp(1rem, 0.927rem + 0.345vw, 1.25rem) 0 0;
+    cursor: pointer;
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+}
+
+.modal-title img {
+    width: clamp(1.625rem, 1.442rem + 0.862vw, 2.25rem);
+    height: auto;
+    margin-right: clamp(0.5rem, 0.427rem + 0.345vw, 0.75rem);
+}
+
+.map-title {
+    font-size: clamp(1.75rem, 1.603rem + 0.69vw, 2.25rem);
+    font-weight: bold;
+}
+
+.map-name {
+    font-family: "belista";
+    font-size: clamp(2rem, 1.67rem + 1.552vw, 3.125rem);
+}
+
+iframe {
+    width: 88%;
+    height: 74dvh;
+    border-radius: clamp(0.375rem, 0.338rem + 0.172vw, 0.5rem);
+    z-index: 2;
+    margin: clamp(1.125rem, 1.052rem + 0.345vw, 1.375rem) auto;
+    box-shadow: 0px 0px 4px 2px rgba(102,75,58,0.65);
+    -webkit-box-shadow: 0px 0px 4px 2px rgba(102,75,58,0.65);
+    -moz-box-shadow: 0px 0px 4px 2px rgba(102,75,58,0.65);
+}
+
 /* Código de vestimenta */
 
 .dress {
@@ -480,6 +537,114 @@ button:hover {
     line-height: clamp(4rem, 3.853rem + 0.69vw, 4.5rem);
 }
 
+/* Modal de confirmación y mensaje */
+
+.atten {
+    background-color: #EBEBE9;
+    width: 100vw;
+    height: 100dvh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.atten-btn {
+    padding: clamp(0.625rem, 0.552rem + 0.326vw, 0.813rem) clamp(1.125rem, 0.978rem + 0.652vw, 1.5rem);
+    border-radius: clamp(0.75rem, 0.701rem + 0.217vw, 0.875rem);
+    margin-top: clamp(2.5rem, 2.353rem + 0.69vw, 3rem);
+    margin-bottom: clamp(1.625rem, 1.478rem + 0.652vw, 2rem);
+}
+
+.atten form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.atten form input {
+    width: 74%;
+    height: clamp(1.625rem, 1.527rem + 0.435vw, 1.875rem);
+    border: 1px solid #664B3A;
+    background-color: #ECEAEB;
+    margin: 8px 0;
+    border-radius: 3px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #494949;
+    font-size: clamp(0.875rem, 0.838rem + 0.172vw, 1rem);
+}
+
+.atten form input:focus, textarea:focus {
+    outline: none;
+    border: 2px solid #664B3A;
+}
+
+textarea {
+    all: unset;
+    width: 74%;
+    height: 24vh;
+    background-color: #ECEAEB;
+    border-radius: 3px;
+    text-align: justify;
+    field-sizing: content;
+    margin-top: 4px;
+    padding: 5px;
+    color: #494949;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #664B3A;
+    font-size: clamp(0.875rem, 0.838rem + 0.172vw, 1rem);
+    font-weight: 100;
+}
+
+textarea::content {
+    padding: 5px;
+}
+
+textarea::placeholder, input::placeholder, .radiobtn-container p {
+    padding: 5px;
+    font-size: clamp(0.875rem, 0.851rem + 0.109vw, 0.938rem);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #494949;
+}
+
+.radiobtn-container {
+    border: 1px solid #664B3A;
+    background-color: #ECEAEB;
+    width: 74%;
+    border-radius: 3px;
+    padding: 5px;
+    margin-bottom: 4px;
+}
+
+.radiobtn-container p {
+    text-align: left;
+    margin-bottom: clamp(0rem, -0.073rem + 0.345vw, 0.25rem);
+}
+
+.radiobtn-container label {
+    display: flex;
+    font-size: clamp(0.875rem, 0.851rem + 0.109vw, 0.938rem);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #494949;
+    align-items: center;
+}
+
+.radiobtn-container .radiobtn {
+    width: clamp(1rem, 0.963rem + 0.172vw, 1.125rem);
+    margin: 0 clamp(0.5rem, 0.463rem + 0.172vw, 0.625rem);
+    cursor: pointer;
+}
+
+.radiobtn-container.active {
+    border: 2px solid #664B3A;
+}
+
 /* Esquinas inferiores de hojas */
 
 .bottom img {
@@ -541,6 +706,40 @@ button:hover {
     transition: .3s;
 }
 
+@media screen and (min-width:540px) {
+    iframe {
+        width: 78%;
+    }
+
+    .atten form input {
+        width: 70%;
+    }
+
+    textarea {
+        width: 70%;
+        height: 28vh;
+    }
+
+    .radiobtn-container {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .atten form input {
+        width: 66%;
+    }
+
+    textarea {
+        width: 66%;
+        height: 30vh;
+    }
+
+    .radiobtn-container {
+        width: 66%;
+    }
+}
+
 @media screen and (min-width:1024px) {
     .parents-group {
         display: flex;
@@ -548,10 +747,6 @@ button:hover {
         width: clamp(37rem, 30.546rem + 10.084vw, 40rem);
         margin: clamp(1rem, -0.076rem + 1.681vw, 1.5rem) auto;
     }
-
-    /* .parents-group-m {
-        margin: auto 32px;
-    } */
 
     .parents__left, .parents__right {
         display: none;
@@ -570,5 +765,22 @@ button:hover {
 
     .padrino {
         margin: auto clamp(0.75rem, -0.863rem + 2.521vw, 1.5rem);
+    }
+
+    iframe {
+        width: 60%;
+    }
+
+    .atten form input {
+        width: 44%;
+    }
+
+    textarea {
+        width: 44%;
+        height: 32vh;
+    }
+
+    .radiobtn-container {
+        width: 44%;
     }
 }

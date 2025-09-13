@@ -11,7 +11,6 @@
 
   <!-- Popup sección música -->
   <div class="music" id="music">
-    <!-- <div class="music__box"></div> -->
     <img class="music-left" src="assets/img/top-left.png" alt="">
     <img class="icon" src="assets/icons/icon-ring.png" alt="">
     <p>¡Nos casamos!</p>
@@ -154,7 +153,7 @@
 
   <section class="ubication">
     <img class="icon" src="assets/icons/icon-church.png" alt="">
-    <button>Ubicación</button>
+    <button id="open-map">Ubicación</button>
     <p>Los Pinos Casa de Campo</p>
     <div class="ubi__place">
       <hr>
@@ -164,10 +163,15 @@
   </section>
 
   <div class="map" id="map">
-    <span id="close-map" class="material-symbols-outlined">cancel</span>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.3108450318!2d-79.00736192582097!3d-8.171405881894314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad19db2b4dcd7b%3A0xd346c3d293db013b!2sEl%20Tio%20Santos%20-%20Casa%20%26%20Eventos%20-%20Moche!5e0!3m2!1sen!2spe!4v1742966990191!5m2!1sen!2spe" width="200" height="300" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <p class="map-p">Jr. Rodolfo Espinar Cuadra 8</p>
-    <p>(Costado Estadio del colegio Rañe)</p>
+    <img class="music-left" src="assets/img/top-left.png" alt="">
+    <img class="icon-close" id="close-map" src="assets/icons/icon-close.png" alt="">
+    <div class="modal-title">
+      <img src="assets/icons/icon-church.png" alt="">
+      <p class="map-title">Ubicación</p>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.181169383248!2d-78.98031282407922!3d-8.082998280813467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad16633abbec39%3A0x4f62c9da60907975!2sLOS%20PINOS%20CASA%20DE%20CAMPO!5e0!3m2!1ses-419!2spe!4v1757720606096!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p class="map-name">Los Pinos Casa de Campo</p>
+    <img class="music-right" src="assets/img/bottom-right.png" alt="">
   </div>
 
   <!-- Código de vestimenta -->
@@ -222,8 +226,34 @@
       <p>18</p>
       <p>Oct.</p>
     </div>
-    <button>Regístrate</button>
+    <button id="open-atten">Regístrate</button>
   </section>
+
+  <div class="atten" id="atten">
+    <img class="music-left" src="assets/img/top-left.png" alt="">
+    <img class="icon-close" id="close-atten" src="assets/icons/icon-close.png" alt="">
+    <div class="modal-title">
+      <img src="assets/icons/icon-list.png" alt="">
+      <p class="map-title">Asistencia</p>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="text" name="txtName" placeholder="Nombre y apellidos" autofocus>
+      <div class="radiobtn-container" id="radioBox">
+        <p>Confirma tu asistencia</p>
+        <label>
+          <input class="radiobtn" type="radio" name="asistencia" value="Confirmado" required>
+          Sí asistiré
+        </label>
+        <label>
+          <input class="radiobtn" type="radio" name="asistencia" value="No puede" required>
+          No podré asistir
+        </label>
+      </div>
+      <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"></textarea>
+      <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
+    </form>
+    <img class="music-right" src="assets/img/bottom-right.png" alt="">
+  </div>
 
   <!-- Borde inferior de hojas -->
   <section class="bottom">
@@ -235,7 +265,7 @@
 
   <footer class="footer">
     <p>© 2025 Todos los derechos reservados</p>
-    <p>MR STUDIO | Diseño & Desarrollo</p>
+    <p>MR Studio | Diseño & Desarrollo</p>
     <div class="footer-social">
       <a href="https://wa.link/37cpyg" target="_blank"><span class="ic--baseline-whatsapp"></span></a>
       <a href="https://www.instagram.com/mr.studio.dev/" target="_blank"><span class="mdi--instagram"></span></a>

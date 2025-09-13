@@ -52,30 +52,60 @@ const countdown = setInterval(() => {
     }, 1000);
 
 // Popup ventana emergente mapa
-// const map = document.getElementById("map");
-// const openMap = document.getElementById("open-map");
-// const closeMap = document.getElementById("close-map");
+const map = document.getElementById("map");
+const openMap = document.getElementById("open-map");
+const closeMap = document.getElementById("close-map");
 
-// openMap.addEventListener("click", () => {
-//     map.style.display = 'flex';
-//     body.classList.add("block-scroll");
-// });
-// closeMap.addEventListener("click", () => {
-//     map.style.display = 'none';
-//     body.classList.remove("block-scroll");
-// });
+openMap.addEventListener("click", () => {
+    map.style.display = 'flex';
+    body.classList.add("block-scroll");
+});
+closeMap.addEventListener("click", () => {
+    map.style.display = 'none';
+    body.classList.remove("block-scroll");
+});
 
 
 // Popup ventana emergente mapa
-// const atten = document.getElementById("atten");
-// const openAtten = document.getElementById("open-atten");
-// const closeAtten = document.getElementById("close-atten");
+const atten = document.getElementById("atten");
+const openAtten = document.getElementById("open-atten");
+const closeAtten = document.getElementById("close-atten");
 
-// openAtten.addEventListener("click", () => {
-//     atten.style.display = 'flex';
-//     body.classList.add("block-scroll");
-// });
-// closeAtten.addEventListener("click", () => {
-//     atten.style.display = 'none';
-//     body.classList.remove("block-scroll");
-// });
+openAtten.addEventListener("click", () => {
+    atten.style.display = 'flex';
+    body.classList.add("block-scroll");
+});
+closeAtten.addEventListener("click", () => {
+    atten.style.display = 'none';
+    body.classList.remove("block-scroll");
+});
+
+
+// Funcionalidad de los radio buttons
+const radioBox = document.getElementById("radioBox");
+const radios = radioBox.querySelectorAll("input[type='radio']");
+const allInputs = document.querySelectorAll("input, textarea");
+
+// Cuando selecciono un radio → activar borde
+radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+        radioBox.classList.add("active");
+    });
+});
+
+// Cuando hago focus en otro input/textarea → quitar borde
+allInputs.forEach(inp => {
+    if (inp.type !== "radio") {
+        inp.addEventListener("focus", () => {
+            radioBox.classList.remove("active");
+        });
+    }
+});
+
+// Si hago clic en cualquier parte del documento → verificar
+document.addEventListener("click", (e) => {
+  // Si el clic NO fue dentro del contenedor de radios, quitar borde
+    if (!radioBox.contains(e.target)) {
+        radioBox.classList.remove("active");
+    }
+});
