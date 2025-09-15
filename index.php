@@ -1,3 +1,34 @@
+<?php
+include("bd/conexion.php");
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+$sql = "SELECT * FROM bod_nestor_diana WHERE id = $id LIMIT 1";
+$result = $conn->query($sql);
+$invitado = $result->fetch_assoc();
+
+if (!$invitado) {
+  die("Invitado no encontrado.");
+}
+
+// Guardar cambios cuando se envía el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
+    $estado = $_POST['asistencia'];
+    $mensaje = $_POST['txtMensaje'];
+
+    $sqlUpdate = "UPDATE bod_nestor_diana 
+                  SET estado='$estado', mensaje='$mensaje' 
+                  WHERE id=$id";
+    if ($conn->query($sqlUpdate) === TRUE) {
+        echo "<script>alert('¡Gracias! Hemos registrado tu respuesta.'); window.location='?id=$id';</script>";
+        exit;
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +36,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <title>Néstor & Diana</title>
+  <title>¡Nos casamos! N&D</title>
 </head>
 <body class="block-scroll">
 
@@ -230,30 +261,41 @@
   </section>
 
   <div class="atten" id="atten">
-    <img class="music-left" src="assets/img/top-left.png" alt="">
-    <img class="icon-close" id="close-atten" src="assets/icons/icon-close.png" alt="">
-    <div class="modal-title">
-      <img src="assets/icons/icon-list.png" alt="">
-      <p class="map-title">Asistencia</p>
-    </div>
-    <form method="POST" enctype="multipart/form-data">
-      <input type="text" name="txtName" placeholder="Nombre y apellidos" autofocus>
-      <div class="radiobtn-container" id="radioBox">
-        <p>Confirma tu asistencia</p>
-        <label>
-          <input class="radiobtn" type="radio" name="asistencia" value="Confirmado" required>
-          Sí asistiré
-        </label>
-        <label>
-          <input class="radiobtn" type="radio" name="asistencia" value="No puede" required>
-          No podré asistir
-        </label>
-      </div>
-      <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"></textarea>
-      <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
-    </form>
-    <img class="music-right" src="assets/img/bottom-right.png" alt="">
+  <img class="music-left" src="assets/img/top-left.png" alt="">
+  <img class="icon-close" id="close-atten" src="assets/icons/icon-close.png" alt="">
+  
+  <div class="modal-title">
+    <img src="assets/icons/icon-list.png" alt="">
+    <p class="map-title">Asistencia</p>
   </div>
+
+  <form method="POST">
+    <!-- Nombre precargado y bloqueado -->
+    <input type="text" name="txtName" value="<?php echo $invitado['nombres']; ?>" readonly>
+
+    <div class="radiobtn-container" id="radioBox">
+      <p>Confirma tu asistencia</p>
+      <label>
+        <input class="radiobtn" type="radio" name="asistencia" value="asistira" required
+          <?php echo ($invitado['estado']=='asistira')?'checked':''; ?>>
+        Sí asistiré
+      </label>
+      <label>
+        <input class="radiobtn" type="radio" name="asistencia" value="no-asistira" required
+          <?php echo ($invitado['estado']=='no-asistira')?'checked':''; ?>>
+        No podré asistir
+      </label>
+    </div>
+
+    <!-- Mensaje precargado -->
+    <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"><?php echo $invitado['mensaje']; ?></textarea>
+
+    <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
+  </form>
+
+  <img class="music-right" src="assets/img/bottom-right.png" alt="">
+</div>
+
 
   <!-- Borde inferior de hojas -->
   <section class="bottom">
