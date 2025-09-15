@@ -794,13 +794,13 @@ textarea::placeholder, input::placeholder, .radiobtn-container p {
 
 /* 🔹 Animaciones de aparición elegantes */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
 }
 .reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Variantes */
@@ -811,28 +811,28 @@ textarea::placeholder, input::placeholder, .radiobtn-container p {
 .reveal-left.active,
 .reveal-right.active,
 .reveal-zoom.active {
-  transform: none;
-  opacity: 1;
+    transform: none;
+    opacity: 1;
 }
 
 /* 🔹 Animación escalonada para countdown */
 .count__number {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
 }
 .count__number.active {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 🔹 Botón con rebote elegante */
 button {
-  transition: transform 0.2s ease, background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 button:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 button:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }

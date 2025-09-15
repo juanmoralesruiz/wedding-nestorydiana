@@ -124,24 +124,24 @@ document.addEventListener("click", (e) => {
 
 // --- Animaciones reveal on scroll ---
 function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal");
-  reveals.forEach(el => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 100) {
-      el.classList.add("active");
-    }
-  });
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            el.classList.add("active");
+        }
+    });
 
-  // Especial para countdown (animación escalonada)
-  const counts = document.querySelectorAll(".count__number");
-  counts.forEach((el, i) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 80) {
-      setTimeout(() => el.classList.add("active"), i * 200);
-    }
-  });
+    // Especial para countdown (animación escalonada)
+    const counts = document.querySelectorAll(".count__number");
+    counts.forEach((el, i) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+            setTimeout(() => el.classList.add("active"), i * 200);
+        }
+    });
 }
 
 window.addEventListener("scroll", revealOnScroll);
