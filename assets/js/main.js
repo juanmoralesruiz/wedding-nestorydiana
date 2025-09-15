@@ -11,15 +11,26 @@ const wtAudioPopup = document.getElementById("wt-audio-popup");
 const woAudioPopup = document.getElementById("wo-audio-popup");
 const musicWindow = document.getElementById("music");
 
-wtAudioPopup.addEventListener("click", () => {
-    musicWindow.classList.add("close-window");
-    body.classList.remove("block-scroll");
-});
+function closeMusicModal(withMusic = false) {
+  if (withMusic) {
+    playAudio(); // 👈 sigue funcionando tu música
+  }
 
-woAudioPopup.addEventListener("click", () => {
-    musicWindow.classList.add("close-window");
+  // 1) activa la animación
+  musicWindow.classList.add("closing");
+
+  // 2) espera que termine (400ms) y oculta del todo
+  setTimeout(() => {
+    musicWindow.classList.remove("closing");   // limpia
+    musicWindow.classList.add("close-window"); // display:none
     body.classList.remove("block-scroll");
-});
+  }, 400); // mismo tiempo que pusimos en el CSS
+}
+
+// Botones
+wtAudioPopup.addEventListener("click", () => closeMusicModal(true));
+woAudioPopup.addEventListener("click", () => closeMusicModal(false));
+
 
 // Funcionalidad Cuenta regresiva
 const targetDate = new Date("Nov 08, 2025 00:00:00").getTime();
