@@ -66,17 +66,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Título -->
-  <section class="title">
+  <section class="title reveal">
     <img src="assets/img/names.png" alt="">
   </section>
 
   <!-- Imagen portada -->
-  <section class="cover-image">
+  <section class="cover-image reveal reveal-zoom">
     <img src="assets/img/1.jpg" alt="">
   </section>
 
   <!-- Versículo -->
-  <section class="verse">
+  <section class="verse reveal reveal-left">
     <div class="verse__text">
       <p>"Ponme como un sello sobre tu corazón, como una marca sobre tu brazo porque fuerte como la muerte es el amor"<br>Cantares 8:6</p>
     </div>
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Padres -->
-  <section class="parents">
+  <section class="parents reveal">
     <p>Con la bendición de Dios y el<br>amor de nuestros padres</p>
     <div class="parents-group">
       <div class="parents-group-m">
@@ -127,13 +127,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Imagen portada -->
-  <section class="cover-image">
+  <section class="cover-image reveal reveal-zoom">
     <img src="assets/img/2.jpg" alt="">
   </section>
 
   <!-- Fecha y hora -->
 
-  <section class="date">
+  <section class="date reveal reveal-right">
     <div class="date__text">
       <p>Nuestro día no estaría completo sin tu presencia, y nos encantaría que nos acompañes a celebrar el amor y la promesa de un " <span>para siempre</span> "</p>
     </div>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   
   <!-- Cuenta regresiva -->
 
-  <section class="countdown">
+  <section class="countdown reveal">
     <div class="countdown-container">
       <div class="count__number">
         <span id="days">00</span>
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
   <!-- Ubicación -->
 
-  <section class="ubication">
+  <section class="ubication reveal reveal-left">
     <img class="icon" src="assets/icons/icon-church.png" alt="">
     <button id="open-map">Ubicación</button>
     <p>Los Pinos Casa de Campo</p>
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
   <!-- Código de vestimenta -->
 
-  <section class="dress">
+  <section class="dress reveal">
     <img class="icon" src="assets/icons/icon-dress.png" alt="">
     <p class="dress-title">Dress Code</p>
     <p class="dress-code">Formal - Elegante</p>
@@ -217,13 +217,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Imagen portada -->
-  <section class="cover-image">
+  <section class="cover-image reveal reveal-zoom">
     <img src="assets/img/3.jpg" alt="">
   </section>
 
   <!-- Regalos -->
 
-  <section class="gift">
+  <section class="gift reveal reveal-right">
     <div class="gift-title">
       <img class="icon" src="assets/icons/icon-gift.png" alt="">
       <p>Regalos</p>
@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
   <!-- Confirmación de asistencia -->
 
-  <section class="confirmation">
+  <section class="confirmation reveal">
     <img class="icon" src="assets/icons/icon-list.png" alt="">
     <p class="confirm-text">Confirmar asistencia hasta el</p>
     <div class="confirm-date">
