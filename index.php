@@ -261,40 +261,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <div class="atten" id="atten">
-  <img class="music-left" src="assets/img/top-left.png" alt="">
-  <img class="icon-close" id="close-atten" src="assets/icons/icon-close.png" alt="">
+    <img class="music-left" src="assets/img/top-left.png" alt="">
+    <img class="icon-close" id="close-atten" src="assets/icons/icon-close.png" alt="">
   
-  <div class="modal-title">
-    <img src="assets/icons/icon-list.png" alt="">
-    <p class="map-title">Asistencia</p>
-  </div>
-
-  <form method="POST">
-    <!-- Nombre precargado y bloqueado -->
-    <input type="text" name="txtName" value="<?php echo $invitado['nombres']; ?>" readonly>
-
-    <div class="radiobtn-container" id="radioBox">
-      <p>Confirma tu asistencia</p>
-      <label>
-        <input class="radiobtn" type="radio" name="asistencia" value="asistira" required
-          <?php echo ($invitado['estado']=='asistira')?'checked':''; ?>>
-        Sí asistiré
-      </label>
-      <label>
-        <input class="radiobtn" type="radio" name="asistencia" value="no-asistira" required
-          <?php echo ($invitado['estado']=='no-asistira')?'checked':''; ?>>
-        No podré asistir
-      </label>
+    <div class="modal-title">
+      <img src="assets/icons/icon-list.png" alt="">
+      <p class="map-title">Asistencia</p>
     </div>
 
-    <!-- Mensaje precargado -->
-    <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"><?php echo $invitado['mensaje']; ?></textarea>
+    <form method="POST">
+      <!-- Nombre precargado y bloqueado -->
+      <input type="text" name="txtName" value="<?php echo $invitado['nombres']; ?>" readonly>
 
-    <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
-  </form>
+      <div class="radiobtn-container" id="radioBox">
+        <p>Confirma tu asistencia</p>
+        <label>
+          <input class="radiobtn" type="radio" name="asistencia" value="asistira" required
+            <?php echo ($invitado['estado']=='asistira')?'checked':''; ?>>
+            Sí asistiré
+        </label>
+        <label>
+          <input class="radiobtn" type="radio" name="asistencia" value="no-asistira" required
+            <?php echo ($invitado['estado']=='no-asistira')?'checked':''; ?>>
+            No podré asistir
+          </label>
+      </div>
 
-  <img class="music-right" src="assets/img/bottom-right.png" alt="">
-</div>
+      <!-- Mensaje precargado -->
+      <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"><?php echo $invitado['mensaje']; ?></textarea>
+
+      <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
+    </form>
+
+    <img class="music-right" src="assets/img/bottom-right.png" alt="">
+  </div>
 
 
   <!-- Borde inferior de hojas -->
