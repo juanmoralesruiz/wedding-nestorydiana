@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 
   <!-- Imagen portada -->
   <section class="cover-image reveal reveal-zoom">
-    <img src="assets/img/2.jpg" alt="">
+    <img src="assets/img/5.jpg" alt="">
   </section>
 
   <!-- Fecha y hora -->
