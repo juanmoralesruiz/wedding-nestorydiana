@@ -16,8 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     $estado = $_POST['asistencia'];
     $mensaje = $_POST['txtMensaje'];
 
+    // 🔹 Nuevos campos para guardar también
+    $pases_confirmados = isset($_POST['pases_confirmados']) ? intval($_POST['pases_confirmados']) : 0;
+    $lleva_ninos = isset($_POST['lleva_ninos']) ? $_POST['lleva_ninos'] : null;
+
     $sqlUpdate = "UPDATE bod_nestor_diana 
-                  SET estado='$estado', mensaje='$mensaje' 
+                  SET estado='$estado', mensaje='$mensaje',
+                      pases_confirmados=$pases_confirmados, 
+                      lleva_ninos=" . ($lleva_ninos ? "'$lleva_ninos'" : "NULL") . "
                   WHERE id=$id";
     if ($conn->query($sqlUpdate) === TRUE) {
         echo "<script>alert('¡Gracias! Hemos registrado tu respuesta.'); window.location='?id=$id';</script>";
@@ -132,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Fecha y hora -->
-
   <section class="date reveal reveal-right">
     <div class="date__text">
       <p>Nuestro día no estaría completo sin tu presencia, y nos encantaría que nos acompañes a celebrar el amor y la promesa de un " <span>para siempre</span> "</p>
@@ -149,7 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
   
   <!-- Cuenta regresiva -->
-
   <section class="countdown reveal">
     <div class="countdown-container">
       <div class="count__number">
@@ -181,7 +185,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Ubicación -->
-
   <section class="ubication reveal reveal-left">
     <img class="icon" src="assets/icons/icon-church.png" alt="">
     <button id="open-map">Ubicación</button>
@@ -206,7 +209,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </div>
 
   <!-- Código de vestimenta -->
-
   <section class="dress reveal">
     <img class="icon" src="assets/icons/icon-dress.png" alt="">
     <p class="dress-title">Dress Code</p>
@@ -222,7 +224,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Regalos -->
-
   <section class="gift reveal reveal-right">
     <div class="gift-title">
       <img class="icon" src="assets/icons/icon-gift.png" alt="">
@@ -249,7 +250,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Confirmación de asistencia -->
-
   <section class="confirmation reveal">
     <img class="icon" src="assets/icons/icon-list.png" alt="">
     <p class="confirm-text">Confirmar asistencia hasta el</p>
@@ -284,10 +284,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
           <input class="radiobtn" type="radio" name="asistencia" value="no-asistira" required
             <?php echo ($invitado['estado']=='no-asistira')?'checked':''; ?>>
             No podré asistir
-          </label>
+        </label>
       </div>
 
-      <!-- Mensaje precargado -->
+      <!-- 🔹 NUEVO: Campo cantidad de asistentes (solo si marca 'Sí') -->
+      <div class="radiobtn-container" id="boxPases" style="display:none;">
+        <p>¿Cuántos asistirán? (máx <?php echo $invitado['pases']; ?>)</p>
+        <input 
+          type="number" 
+          name="pases_confirmados" 
+          id="pases_confirmados"
+          min="1" 
+          max="<?php echo $invitado['pases']; ?>"
+          value="<?php echo $invitado['pases_confirmados']; ?>">
+      </div>
+
+      <!-- 🔹 NUEVO: Campo '¿Asistirás con tus niños?' (solo si ninos > 0) -->
+      <?php if ($invitado['ninos'] > 0): ?>
+      <div class="radiobtn-container" id="boxNinos" style="display:none;">
+        <p>¿Asistirás con tus niños?</p>
+        <label>
+          <input class="radiobtn" type="radio" name="lleva_ninos" value="sí"
+            <?php echo ($invitado['lleva_ninos']=='sí')?'checked':''; ?>>
+            Sí
+        </label>
+        <label>
+          <input class="radiobtn" type="radio" name="lleva_ninos" value="no"
+            <?php echo ($invitado['lleva_ninos']=='no')?'checked':''; ?>>
+            No
+        </label>
+      </div>
+      <?php endif; ?>
+
+      <!-- Mensaje -->
       <textarea name="txtMensaje" placeholder="Déjanos un consejo o mensaje de ánimo"><?php echo $invitado['mensaje']; ?></textarea>
 
       <button class="ubi-btn atten-btn" type="submit" name="action" value="enviar">ENVIAR DATOS</button>
@@ -296,7 +325,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     <img class="music-right" src="assets/img/bottom-right.png" alt="">
   </div>
 
-
   <!-- Borde inferior de hojas -->
   <section class="bottom">
     <img class="bottom__left" src="assets/img/bottom-left.png" alt="">
@@ -304,7 +332,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </section>
 
   <!-- Pie de página -->
-
   <footer class="footer">
     <p>© 2025 Todos los derechos reservados</p>
     <p>MR Studio | Diseño & Desarrollo</p>
@@ -314,8 +341,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     </div>
   </footer>
 
-  <!-- Script y música de fondo -->
+  <!-- Variables de PHP hacia JS para la lógica -->
+  <script>
+    const pasesAsignados = <?php echo $invitado['pases']; ?>;
+    const ninosAsignados = <?php echo $invitado['ninos']; ?>;
+  </script>
 
+  <!-- Script y música de fondo -->
   <script src="assets/js/main.js"></script>
   <audio src="assets/audio/Victor Muñoz-Tu guardian.mp3" id="bg-music" loop></audio>
 

@@ -77,7 +77,7 @@ closeMap.addEventListener("click", () => {
 });
 
 
-// Popup ventana emergente mapa
+// Popup ventana emergente asistencia
 const atten = document.getElementById("atten");
 const openAtten = document.getElementById("open-atten");
 const closeAtten = document.getElementById("close-atten");
@@ -92,7 +92,7 @@ closeAtten.addEventListener("click", () => {
 });
 
 
-// Funcionalidad de los radio buttons
+// Funcionalidad de los radio buttons (borde activo)
 const radioBox = document.getElementById("radioBox");
 const radios = radioBox.querySelectorAll("input[type='radio']");
 const allInputs = document.querySelectorAll("input, textarea");
@@ -146,3 +146,39 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+
+/* =================================================
+🔸 AÑADIDOS: Lógica dinámica del formulario RSVP
+   ================================================= */
+const radioAsistencia = document.querySelectorAll("input[name='asistencia']");
+const boxPases = document.getElementById("boxPases");
+const boxNinos = document.getElementById("boxNinos");
+
+radioAsistencia.forEach(radio => {
+    radio.addEventListener("change", () => {
+        if (radio.value === "asistira" && radio.checked) {
+            // Mostrar campo cantidad de asistentes
+            if (boxPases) boxPases.style.display = "block";
+
+            // Solo mostrar niños si tiene pases de niños asignados
+            if (typeof ninosAsignados !== "undefined" && ninosAsignados > 0 && boxNinos) {
+                boxNinos.style.display = "block";
+            }
+        } else if (radio.value === "no-asistira" && radio.checked) {
+            // Ocultar todo si no asiste
+            if (boxPases) boxPases.style.display = "none";
+            if (boxNinos) boxNinos.style.display = "none";
+        }
+    });
+});
+
+// Inicialización por si vuelve a abrir y ya marcó antes
+window.addEventListener("DOMContentLoaded", () => {
+    const asistira = document.querySelector("input[name='asistencia'][value='asistira']");
+    if (asistira && asistira.checked) {
+        if (boxPases) boxPases.style.display = "block";
+        if (typeof ninosAsignados !== "undefined" && ninosAsignados > 0 && boxNinos) {
+            boxNinos.style.display = "block";
+        }
+    }
+});
