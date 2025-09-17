@@ -25,7 +25,7 @@
     <!-- MOBILE FIRST: CARDS -->
     <div class="cards-container" id="cardsContainer">
       <?php
-      $sql = "SELECT * FROM bod_nestor_diana ORDER BY id ASC";
+      $sql = "SELECT * FROM bod_nestor_diana ORDER BY nombres ASC";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -96,7 +96,7 @@
       </thead>
       <tbody>
         <?php
-        $result = $conn->query("SELECT * FROM bod_nestor_diana ORDER BY id ASC");
+        $result = $conn->query("SELECT * FROM bod_nestor_diana ORDER BY nombres ASC");
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $estadoTexto = "";
