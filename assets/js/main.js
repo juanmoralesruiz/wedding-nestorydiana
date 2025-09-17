@@ -60,7 +60,7 @@ const countdown = setInterval(() => {
         document.getElementById("minutes").innerText = pad(minutes);
         document.getElementById("seconds").innerText = pad(seconds);
     }
-    }, 1000);
+}, 1000);
 
 // Popup ventana emergente mapa
 const map = document.getElementById("map");
@@ -92,34 +92,77 @@ closeAtten.addEventListener("click", () => {
 });
 
 
-// Funcionalidad de los radio buttons (borde activo)
-const radioBox = document.getElementById("radioBox");
-const radios = radioBox.querySelectorAll("input[type='radio']");
-const allInputs = document.querySelectorAll("input, textarea");
+// === 🔹 NUEVA LÓGICA PARA EL FORMULARIO DE ASISTENCIA ===
 
-// Cuando selecciono un radio → activar borde
-radios.forEach(radio => {
-    radio.addEventListener("change", () => {
-        radioBox.classList.add("active");
-    });
-});
+// Variables
+const radioAsistencia = document.querySelectorAll("input[name='asistencia']");
+const boxPases = document.getElementById("boxPases");
+const pasesInput = document.getElementById("pases_confirmados");
+const boxNinos = document.getElementById("boxNinos");
 
-// Cuando hago focus en otro input/textarea → quitar borde
-allInputs.forEach(inp => {
-    if (inp.type !== "radio") {
-        inp.addEventListener("focus", () => {
-            radioBox.classList.remove("active");
-        });
+// Función para limitar valores
+function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+}
+
+function updateRSVPUI() {
+    const asistira =
+        document.querySelector("input[name='asistencia']:checked")?.value === "asistira";
+
+    if (asistira) {
+        // --- Campo "¿Cuántos asistirán?"
+        if (pasesAsignados <= 1) {
+            // Si solo tiene 1 pase → no mostrar campo, fijar valor en 1
+            if (boxPases) boxPases.style.display = "none";
+            if (pasesInput) {
+                pasesInput.disabled = false;   // debe enviarse
+                pasesInput.required = false;   // no es obligatorio porque ya está fijo
+                pasesInput.min = 1;
+                pasesInput.max = 1;
+                pasesInput.value = 1;
+            }
+        } else {
+            // Si tiene >1 pase → mostrar el input
+            if (boxPases) boxPases.style.display = "block";
+            if (pasesInput) {
+                pasesInput.disabled = false;
+                pasesInput.required = true;
+                pasesInput.min = 1;
+                pasesInput.max = pasesAsignados;
+                const current = parseInt(pasesInput.value, 10);
+                pasesInput.value = isNaN(current) ? 1 : clamp(current, 1, pasesAsignados);
+            }
+        }
+
+        // --- Campo "¿Asistirás con tus niños?"
+        if (boxNinos) {
+            const showKids = typeof ninosAsignados !== "undefined" && ninosAsignados > 0;
+            boxNinos.style.display = showKids ? "block" : "none";
+            const kidsRadios = boxNinos.querySelectorAll("input[name='lleva_ninos']");
+            kidsRadios.forEach(r => (r.disabled = !showKids));
+        }
+    } else {
+        // NO asistirá → ocultar/limpiar campos
+        if (boxPases) boxPases.style.display = "none";
+        if (pasesInput) {
+            pasesInput.required = false;
+            pasesInput.disabled = true; // navegador lo ignora
+            pasesInput.value = "";      // limpiar
+        }
+        if (boxNinos) {
+            boxNinos.style.display = "none";
+            const kidsRadios = boxNinos.querySelectorAll("input[name='lleva_ninos']");
+            kidsRadios.forEach(r => {
+                r.checked = false;
+                r.disabled = true;
+            });
+        }
     }
-});
+}
 
-// Si hago clic en cualquier parte del documento → verificar
-document.addEventListener("click", (e) => {
-  // Si el clic NO fue dentro del contenedor de radios, quitar borde
-    if (!radioBox.contains(e.target)) {
-        radioBox.classList.remove("active");
-    }
-});
+// Eventos
+radioAsistencia.forEach(r => r.addEventListener("change", updateRSVPUI));
+window.addEventListener("DOMContentLoaded", updateRSVPUI);
 
 
 // --- Animaciones reveal on scroll ---
@@ -146,39 +189,3 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-
-/* =================================================
-🔸 AÑADIDOS: Lógica dinámica del formulario RSVP
-   ================================================= */
-const radioAsistencia = document.querySelectorAll("input[name='asistencia']");
-const boxPases = document.getElementById("boxPases");
-const boxNinos = document.getElementById("boxNinos");
-
-radioAsistencia.forEach(radio => {
-    radio.addEventListener("change", () => {
-        if (radio.value === "asistira" && radio.checked) {
-            // Mostrar campo cantidad de asistentes
-            if (boxPases) boxPases.style.display = "block";
-
-            // Solo mostrar niños si tiene pases de niños asignados
-            if (typeof ninosAsignados !== "undefined" && ninosAsignados > 0 && boxNinos) {
-                boxNinos.style.display = "block";
-            }
-        } else if (radio.value === "no-asistira" && radio.checked) {
-            // Ocultar todo si no asiste
-            if (boxPases) boxPases.style.display = "none";
-            if (boxNinos) boxNinos.style.display = "none";
-        }
-    });
-});
-
-// Inicialización por si vuelve a abrir y ya marcó antes
-window.addEventListener("DOMContentLoaded", () => {
-    const asistira = document.querySelector("input[name='asistencia'][value='asistira']");
-    if (asistira && asistira.checked) {
-        if (boxPases) boxPases.style.display = "block";
-        if (typeof ninosAsignados !== "undefined" && ninosAsignados > 0 && boxNinos) {
-            boxNinos.style.display = "block";
-        }
-    }
-});

@@ -418,7 +418,7 @@ button:hover {
 }
 
 .modal-title img {
-    width: clamp(1.625rem, 1.442rem + 0.862vw, 2.25rem);
+    width: clamp(1.875rem, 0.713rem + 2.817vh, 3.125rem);
     height: auto;
     margin-right: clamp(0.5rem, 0.427rem + 0.345vw, 0.75rem);
 }
@@ -561,8 +561,7 @@ iframe {
 .atten-btn {
     padding: clamp(0.625rem, 0.552rem + 0.326vw, 0.813rem) clamp(1.125rem, 0.978rem + 0.652vw, 1.5rem);
     border-radius: clamp(0.75rem, 0.701rem + 0.217vw, 0.875rem);
-    margin-top: clamp(2.5rem, 2.353rem + 0.69vw, 3rem);
-    margin-bottom: clamp(1.625rem, 1.478rem + 0.652vw, 2rem);
+    margin-top: clamp(1.5rem, 0.57rem + 2.254vh, 2.5rem);
 }
 
 .atten form {
@@ -570,12 +569,12 @@ iframe {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 32px;
+    margin-top: clamp(0.5rem, -0.778rem + 3.099vh, 1.875rem);
 }
 
 .atten form input {
     width: 74%;
-    height: clamp(1.625rem, 1.527rem + 0.435vw, 1.875rem);
+    height: clamp(1.25rem, 1.018rem + 0.563vh, 1.5rem);
     border: 1px solid #664B3A;
     background-color: #ECEAEB;
     margin: 8px 0;
@@ -594,7 +593,7 @@ iframe {
 textarea {
     all: unset;
     width: 74%;
-    height: 24vh;
+    height: 20vh;
     background-color: #ECEAEB;
     border-radius: 3px;
     text-align: justify;
@@ -718,31 +717,31 @@ textarea::placeholder, input::placeholder, .radiobtn-container p {
     }
 
     .atten form input {
-        width: 70%;
+        width: 68%;
     }
 
     textarea {
-        width: 70%;
-        height: 28vh;
+        width: 68%;
+        height: 24vh;
     }
 
     .radiobtn-container {
-        width: 70%;
+        width: 68%;
     }
 }
 
 @media screen and (min-width:768px) {
     .atten form input {
-        width: 66%;
+        width: 60%;
     }
 
     textarea {
-        width: 66%;
-        height: 30vh;
+        width: 60%;
+        height: 28vh;
     }
 
     .radiobtn-container {
-        width: 66%;
+        width: 60%;
     }
 }
 
@@ -778,16 +777,16 @@ textarea::placeholder, input::placeholder, .radiobtn-container p {
     }
 
     .atten form input {
-        width: 44%;
+        width: 48%;
     }
 
     textarea {
-        width: 44%;
-        height: 32vh;
+        width: 48%;
+        height: 30vh;
     }
 
     .radiobtn-container {
-        width: 44%;
+        width: 48%;
     }
 }
 

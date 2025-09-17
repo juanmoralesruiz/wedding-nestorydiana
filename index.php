@@ -290,13 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
       <!-- 🔹 NUEVO: Campo cantidad de asistentes (solo si marca 'Sí') -->
       <div class="radiobtn-container" id="boxPases" style="display:none;">
         <p>¿Cuántos asistirán? (máx <?php echo $invitado['pases']; ?>)</p>
-        <input 
-          type="number" 
-          name="pases_confirmados" 
-          id="pases_confirmados"
-          min="1" 
-          max="<?php echo $invitado['pases']; ?>"
-          value="<?php echo $invitado['pases_confirmados']; ?>">
+        <input type="number" name="pases_confirmados" id="pases_confirmados"min="1" max="<?php echo $invitado['pases']; ?>" value="<?php echo $invitado['pases_confirmados']; ?>">
       </div>
 
       <!-- 🔹 NUEVO: Campo '¿Asistirás con tus niños?' (solo si ninos > 0) -->
