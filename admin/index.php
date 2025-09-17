@@ -68,6 +68,8 @@
                   <p><strong>Teléfono:</strong> {$row['telefono']}</p>
                   <p><strong>Pases:</strong> {$row['pases']}</p>
                   <p><strong>Niños:</strong> {$row['ninos']}</p>
+                  <p><strong>Confirmados:</strong> {$row['pases_confirmados']}</p>
+                  <p><strong>¿Con niños?:</strong> {$row['lleva_ninos']}</p>
                   <p><strong>Estado:</strong> <span class='badge $claseEstado'>$estadoTexto</span></p>
                   <button class='btn-enviar' onclick=\"window.open('$linkWhatsapp','_blank')\">Enviar invitación</button>
                 </div>";
@@ -86,6 +88,8 @@
           <th>Teléfono</th>
           <th>Pases</th>
           <th>Niños</th>
+          <th>Confirmados</th>
+          <th>¿Con niños?</th>
           <th>Estado</th>
           <th>Acción</th>
         </tr>
@@ -133,6 +137,8 @@
                     <td>{$row['telefono']}</td>
                     <td>{$row['pases']}</td>
                     <td>{$row['ninos']}</td>
+                    <td>{$row['pases_confirmados']}</td>
+                    <td>{$row['lleva_ninos']}</td>
                     <td><span class='badge $claseEstado'>$estadoTexto</span></td>
                     <td><button class='btn-enviar' onclick=\"window.open('$linkWhatsapp','_blank')\">Enviar</button></td>
                   </tr>";
