@@ -51,7 +51,7 @@ header("Expires: 0"); // Proxies
             </svg>
         </div>
 
-        El amor se multiplica cuando se comparte
+        "Ponme como un sello sobre tu corazón, como una marca sobre tu brazo porque fuerte como la muerte es el amor"<br>Cantares 8:6
 
         <!-- SVG Corazón pequeño -->
         <div class="decor-right">
