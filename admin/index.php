@@ -1,10 +1,19 @@
-<?php include("../bd/conexion.php"); ?>
+<?php
+
+include("../bd/conexion.php");
+
+// Evitar que el navegador guarde caché
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+header("Pragma: no-cache"); // HTTP 1.0
+header("Expires: 0"); // Proxies
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/admin.css?v=2">
   <link rel="shortcut icon" href="../assets/icons/ico_jp.ico" type="image/x-icon">
   <title>¡Nos casamos! N&D</title>
 </head>
@@ -150,6 +159,17 @@
     </table>
   </div>
 
-  <script src="../assets/js/admin.js"></script>
+  <script src="../assets/js/admin.js?v=2"></script>
+
+  <!-- Forzar URL única para evitar caché pegado -->
+  <script>
+    (function() {
+      if (!window.location.href.includes("nocache")) {
+        var sep = window.location.href.includes("?") ? "&" : "?";
+        window.location.replace(window.location.href + sep + "nocache=" + new Date().getTime());
+      }
+    })();
+  </script>
+
 </body>
 </html>

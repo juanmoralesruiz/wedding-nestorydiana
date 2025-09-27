@@ -1,6 +1,12 @@
 <?php
 include("bd/conexion.php");
 
+// Evitar que el navegador guarde caché
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+header("Pragma: no-cache"); // HTTP 1.0
+header("Expires: 0"); // Proxies
+
+
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $sql = "SELECT * FROM bod_nestor_diana WHERE id = $id LIMIT 1";
@@ -40,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link rel="shortcut icon" href="assets/icons/ico_jp.ico" type="image/x-icon">
   <title>¡Nos casamos! N&D</title>
@@ -343,8 +349,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   </script>
 
   <!-- Script y música de fondo -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=2"></script>
   <audio src="assets/audio/Victor Muñoz-Tu guardian.mp3" id="bg-music" loop></audio>
+
+    <!-- Forzar URL única para evitar caché pegado -->
+  <script>
+    (function() {
+      if (!window.location.href.includes("nocache")) {
+        var sep = window.location.href.includes("?") ? "&" : "?";
+        window.location.replace(window.location.href + sep + "nocache=" + new Date().getTime());
+      }
+    })();
+  </script>
 
 </body>
 </html>

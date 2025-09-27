@@ -1,0 +1,121 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #FDFBFB;
+    margin: 0;
+    padding: 0;
+    color: #494949;
+    line-height: 1.5;
+}
+
+/* ===== Encabezado ===== */
+header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    position: relative;
+}
+
+header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    margin: 0;
+    color: #664B3A;
+}
+
+header p {
+    font-size: 1rem;
+    color: #777;
+    margin-top: .5rem;
+}
+
+header .decor-left,
+header .decor-right {
+    position: absolute;
+    top: 10px;
+}
+
+header .decor-left { left: 15px; }
+header .decor-right { right: 15px; }
+
+/* ===== Contenedor de mensajes ===== */
+.mensajes-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.mensaje-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: transform .2s ease, box-shadow .2s ease;
+    position: relative; /* necesario para ubicar el decorativo */
+    overflow: hidden;
+}
+
+/* Decorativo en esquina */
+.mensaje-card::after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="%23C0392B" viewBox="0 0 24 24"><path d="M12 21s-8-6-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5-8 11-8 11z"/></svg>');
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    opacity: 0.6;
+}
+
+.mensaje-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 16px rgba(0,0,0,0.12);
+}
+
+.mensaje-nombre {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #664B3A;
+    margin-bottom: .5rem;
+}
+
+.mensaje-texto {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+    word-wrap: break-word;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    font-style: italic;
+    font-size: 1rem;
+    color: #664B3A;
+    background: #FAF8F8;
+    margin-top: 2rem;
+    border-top: 1px solid #EEE;
+    position: relative;
+}
+
+footer .decor-left,
+footer .decor-right {
+    position: absolute;
+    bottom: 10px;
+}
+
+footer .decor-left { left: 20px; }
+footer .decor-right { right: 20px; }
+
+/* ===== Responsividad ===== */
+@media (max-width: 992px) {
+    header h1 { font-size: 2rem; }
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.6rem; }
+    header p { font-size: 0.9rem; }
+    .mensaje-card { padding: 1rem; }
+    .mensaje-nombre { font-size: 1rem; }
+    .mensaje-texto { font-size: 0.9rem; }
+    footer { font-size: 0.9rem; padding: 1.5rem 1rem 2.5rem; }
+}
