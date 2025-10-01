@@ -26,9 +26,32 @@ header("Expires: 0"); // Proxies
       <input type="text" placeholder="🔍 Buscar" id="buscar" onkeyup="filtrar()">
       <select id="estadoFiltro" onchange="filtrar()">
         <option value="">Estado</option>
-        <option value="asistira">Asistirá</option>
-        <option value="pendiente">Pendiente</option>
-        <option value="no-asistira">No asistirá</option>
+        <?php
+        $sql2 = "SELECT COUNT(*) AS cantidad FROM bod_nestor_diana WHERE estado = 'asistira'";
+        $result2 = $conn->query($sql2);
+
+        if ($result2) {
+          $row1 = $result2->fetch_assoc();
+          echo "<option value=\"asistira\">Asistirá (" . $row1['cantidad'] . ")</option>";
+        }
+
+
+        $sql3 = "SELECT COUNT(*) AS cantidad FROM bod_nestor_diana WHERE estado = 'pendiente'";
+        $result3 = $conn->query($sql3);
+
+        if ($result3) {
+          $row2 = $result3->fetch_assoc();
+          echo "<option value=\"pendiente\">Pendiente (" . $row2['cantidad'] . ")</option>";
+        }
+
+        $sql4 = "SELECT COUNT(*) AS cantidad FROM bod_nestor_diana WHERE estado = 'no-asistira'";
+        $result4 = $conn->query($sql4);
+
+        if ($result4) {
+          $row3 = $result4->fetch_assoc();
+          echo "<option value=\"no-asistira\">No asistirá (" . $row3['cantidad'] . ")</option>";
+        }
+        ?>
       </select>
     </div>
 
@@ -58,8 +81,8 @@ header("Expires: 0"); // Proxies
 
           // Armar mensaje con saltos de línea "\n"
           $mensaje = "¡Nos casamos! 💍✨\n".
-            "Queremos que nos acompañen en este día tan especial para nosotros…\n".
-            "Por eso hemos separado {$row['pases']} pase(s) para ti".
+            "Quedan pocos días y estamos a la espera de tu confirmación\n".
+            "Recuerda que hemos separado {$row['pases']} pase(s) para ti".
             ($row['ninos'] > 0 ? " y {$row['ninos']} para tu(s) niño(s)" : "") . ", ".
             "nos emociona pensar que estarán a nuestro lado en este capítulo tan hermoso que apenas comienza.\n".
             "Por favor, confírmanos tu asistencia en el siguiente enlace, en el que también encontrarás los detalles de nuestra boda.\n".
@@ -127,8 +150,8 @@ header("Expires: 0"); // Proxies
 
             // Armar mensaje con saltos de línea "\n"
             $mensaje = "¡Nos casamos! 💍✨\n".
-            "Queremos que nos acompañen en este día tan especial para nosotros…\n".
-            "Por eso hemos separado {$row['pases']} pase(s) para ti".
+            "Quedan pocos días y estamos a la espera de tu confirmación\n".
+            "Recuerda que hemos separado {$row['pases']} pase(s) para ti".
             ($row['ninos'] > 0 ? " y {$row['ninos']} para tu(s) niño(s)" : "") . ", ".
             "nos emociona pensar que estarán a nuestro lado en este capítulo tan hermoso que apenas comienza.\n".
             "Por favor, confírmanos tu asistencia en el siguiente enlace, en el que también encontrarás los detalles de nuestra boda.\n".

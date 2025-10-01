@@ -23,7 +23,7 @@ header("Expires: 0"); // Proxies
 <body>
 
     <header>
-        <h1>Bandeja de mensajes<br>Néstor & Dianna</h1>
+        <h1>Bandeja de mensajes<br>Néstor & Diana</h1>
         <p>Estas son las palabras y buenos deseos de nuestros seres queridos</p>
     </header>
     
